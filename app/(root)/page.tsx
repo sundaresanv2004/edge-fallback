@@ -26,10 +26,11 @@ export default function Page() {
           </h1>
 
           {/* Description */}
-          <p className="mx-auto mb-8 max-w-lg text-sm leading-relaxed text-muted-foreground sm:mb-10 sm:text-base md:text-lg">
+          <p className="mx-auto mb-8 max-w-lg text-sm leading-relaxed text-muted-foreground sm:mb-10 sm:text-base md:text-md">
             The application previously hosted on this domain may have been put
-            to sleep, moved to a new address, updated, or permanently removed.
-            For any questions or to request access, feel free to reach out.
+            to sleep or moved to a new address.
+            If you have any questions, need access, or would like to request
+            bringing the application back, please feel free to contact me.
           </p>
 
           {/* CTA row */}
