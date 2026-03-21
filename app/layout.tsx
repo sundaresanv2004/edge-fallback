@@ -11,6 +11,11 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
+export const metadata = {
+  title: "Service Unavailable",
+  description: "The application previously hosted on this domain is currently unavailable. Please check back later or contact the developer for more information.",
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
