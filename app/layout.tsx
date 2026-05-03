@@ -1,17 +1,18 @@
-import localFont from "next/font/local"
+import { DM_Sans, JetBrains_Mono } from "next/font/google"
 
 import "./globals.css"
-import { ThemeProvider } from "@/components/ui/theme-provider"
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import Link from "next/link";
 
-const dmSans = localFont({
-  src: "../public/fonts/dm-sans-latin.woff2",
+const dmSans = DM_Sans({
+  subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
 })
 
-const fontMono = localFont({
-  src: "../public/fonts/geist-mono-latin.woff2",
+const fontMono = JetBrains_Mono({
+  subsets: ["latin"],
   display: "swap",
   variable: "--font-mono",
 })
@@ -35,13 +36,24 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", dmSans.variable)}
+      className={cn("antialiased dark", fontMono.variable, "font-sans", dmSans.variable)}
     >
       <body>
-        <ThemeProvider
+        <Link
+          href="https://sundaresan.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed left-5 top-5 z-50 transition-opacity hover:opacity-80 sm:left-8 sm:top-8"
         >
-          {children}
-        </ThemeProvider>
+          <Image
+            src="/images/profile.svg"
+            alt="Sundaresan V"
+            width={34}
+            height={34}
+            className="rounded-full ring-1 ring-border/30"
+          />
+        </Link>
+        {children}
       </body>
     </html>
   )

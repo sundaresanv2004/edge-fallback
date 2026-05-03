@@ -86,13 +86,7 @@ The Docker healthcheck also uses `/health`.
 
 ## Fonts
 
-Fonts are self-hosted in:
-
-```txt
-public/fonts/
-```
-
-The app uses `next/font/local`, so production builds do not need to fetch Google Fonts at build time.
+The app uses `next/font/google` with DM Sans and JetBrains Mono. Fonts are loaded from Google Fonts at build time and optimized by Next.js automatically.
 
 ## Search And Indexing
 
