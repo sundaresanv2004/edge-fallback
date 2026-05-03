@@ -3,9 +3,20 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: edge-fallback
-    ports:
-      - "3000:3000"
     restart: unless-stopped
     environment:
       - NODE_ENV=production
+    expose:
+      - "3000"
+    networks:
+      - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.edge-fallback.rule=Host(`fallback.sundaresan.dev`)"
+      - "traefik.http.routers.edge-fallback.entrypoints=websecure"
+      - "traefik.http.routers.edge-fallback.tls.certResolver=letsencrypt"
+      - "traefik.http.services.edge-fallback.loadbalancer.server.port=3000"
+
+networks:
+  dokploy-network:
+    external: true
