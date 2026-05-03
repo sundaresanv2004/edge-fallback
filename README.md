@@ -13,7 +13,7 @@ When your primary applications are paused to save server resources, this utility
 - **Performance Optimized**: Built with Next.js 15, Tailwind CSS 4, and optimized Google Fonts.
 - **Dynamic Routing**: Automatically detects the app name from the URL path.
 - **Stateless & Lean**: No database required. Configuration-free by default.
-- **Hardened Deployment**: Includes a secure Docker configuration ready for production.
+- **Hardened Deployment**: Includes a secure Docker configuration ready for Coolify or other production environments.
 
 ## 🚀 Quick Start
 
@@ -45,15 +45,15 @@ The application treats the first segment of the URL path as the **App Name**.
 
 ## 🛠️ Deployment
 
-### Using Dokploy or Coolify (Recommended)
+### Using Coolify (Recommended)
 
-This project is optimized for modern deployment platforms. To deploy:
+This project is optimized for Coolify. To deploy:
 
-1. Create a new **Application** and point it to your repository.
+1. Create a new **Service** or **Application** in Coolify and point it to your repository.
 2. The provided `docker-compose.yml` will handle the build and basic security hardening.
-3. **Domain Assignment**: Go to the **Domains** tab in your Dokploy/Coolify UI.
-4. Add your domain (e.g., `fallback.yourdomain.com`) and point it to Port `3000`.
-5. Enable SSL/HTTPS. The UI will automatically handle certificate generation via Traefik.
+3. **Domain Assignment**: In the Coolify UI, find the **Domains** setting for the `edge-fallback` service.
+4. Add your domain (e.g., `https://fallback.yourdomain.com`). If your app listens on port 3000, enter `https://fallback.yourdomain.com:3000`.
+5. Coolify will automatically handle the proxy routing and SSL certificates.
 
 ### Cloudflare Redirects
 
