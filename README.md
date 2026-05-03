@@ -1,130 +1,80 @@
 # Edge Fallback
 
-Fallback website for paused applications hosted under `sundaresan.dev`.
+A high-performance, ultra-minimalist fallback landing page utility designed for serverless or "sleeping" applications. 
 
-When a temporary app is stopped to save resources, Cloudflare redirects visitors to this site so non-technical users see a clear, friendly message instead of a server or browser error.
+When your primary applications are paused to save server resources, this utility provides a clear, professional, and interactive "Available on Request" message to visitors, preventing confusing browser or server errors.
 
-## Local Development
+![Preview Image](https://raw.githubusercontent.com/sundaresanv2004/edge-fallback/main/public/preview.png)
+
+## ✨ Features
+
+- **Premium UI/UX**: Minimalist design with a focus on typography and clear calls to action.
+- **Interactive Background**: Beautiful Aceternity-inspired ripple effect that responds to clicks.
+- **Performance Optimized**: Built with Next.js 15, Tailwind CSS 4, and optimized Google Fonts.
+- **Dynamic Routing**: Automatically detects the app name from the URL path.
+- **Stateless & Lean**: No database required. Configuration-free by default.
+- **Hardened Deployment**: Includes a secure Docker configuration ready for production.
+
+## 🚀 Quick Start
+
+### Local Development
 
 ```bash
+# Install dependencies
 npm install
+
+# Start development server
 npm run dev
 ```
 
-Useful checks:
+### Build for Production
 
 ```bash
-npm run lint
-npm run typecheck
 npm run build
+npm run start
 ```
 
-## URL Behavior
+## 🌍 URL Routing Logic
 
-The root route shows a generic fallback page:
+The application treats the first segment of the URL path as the **App Name**.
 
-```txt
-https://fallback.sundaresan.dev/
-```
+- **Generic Fallback**: `https://your-fallback-domain.com/`
+- **App Specific**: `https://your-fallback-domain.com/quickdrop/dashboard`
+  - **App Name**: Quickdrop
+  - **Path Context**: /dashboard
 
-App-specific routes show a detailed page:
+## 🛠️ Deployment
 
-```txt
-https://fallback.sundaresan.dev/quickdrop/login
-```
+### Using Dokploy or Coolify (Recommended)
 
-This displays:
+This project is optimized for modern deployment platforms. To deploy:
 
-```txt
-Quickdrop is Available on Request
-Requested path: /login
-```
+1. Create a new **Application** and point it to your repository.
+2. The provided `docker-compose.yml` will handle the build and basic security hardening.
+3. **Domain Assignment**: Go to the **Domains** tab in your Dokploy/Coolify UI.
+4. Add your domain (e.g., `fallback.yourdomain.com`) and point it to Port `3000`.
+5. Enable SSL/HTTPS. The UI will automatically handle certificate generation via Traefik.
 
-The first path segment is treated as the app slug. Remaining path segments are shown as the originally requested path.
+### Cloudflare Redirects
 
-## Cloudflare Redirects
+To redirect traffic from a paused app to this fallback, create a **Redirect Rule** in Cloudflare:
 
-For each paused app, create a redirect rule like this:
+- **Match**: `https://app.yourdomain.com/*`
+- **Target**: `https://fallback.yourdomain.com/app-name/${1}`
+- **Status**: `302 Temporary Redirect`
 
-```txt
-Request URL:
-https://quickdrop.sundaresan.dev/*
+## 🛡️ Container Hardening
 
-Target URL:
-https://fallback.sundaresan.dev/quickdrop/${1}
+The provided `docker-compose.yml` includes several security best practices out of the box:
+- `read_only: true` filesystem.
+- `cap_drop: - ALL` to prevent privilege escalation.
+- `no-new-privileges: true` security option.
+- `tmpfs` mounts for temporary file requirements.
 
-Status:
-302 Temporary Redirect
-```
+## 📄 License
 
-Use the app slug as the first path segment:
+Distributed under the **MIT License**. See `LICENSE` for more information.
 
-```txt
-https://fallback.sundaresan.dev/staff-portal/${1}
-https://fallback.sundaresan.dev/inventory/${1}
-https://fallback.sundaresan.dev/quickdrop/${1}
-```
+---
 
-## Dokploy Deployment
-
-This project is configured for Dokploy using Docker Compose.
-
-The compose file:
-
-- connects to the external `dokploy-network`
-- exposes port `3000` only to Traefik
-- routes `fallback.sundaresan.dev` through Traefik labels
-- applies basic container hardening
-
-Health endpoint:
-
-```txt
-https://fallback.sundaresan.dev/health
-```
-
-The Docker healthcheck also uses `/health`.
-
-## Fonts
-
-The app uses `next/font/google` with DM Sans and JetBrains Mono. Fonts are loaded from Google Fonts at build time and optimized by Next.js automatically.
-
-## Search And Indexing
-
-This fallback site should not appear in Google search results.
-
-The app includes:
-
-- `metadata.robots` with `index: false` and `follow: false`
-- `/robots.txt` that disallows all crawlers
-- `/sitemap.xml` disabled with a `404` response
-
-Because `sundaresan.dev` is already verified as a Domain property in Google Search Console, it also covers subdomains such as:
-
-```txt
-fallback.sundaresan.dev
-quickdrop.sundaresan.dev
-```
-
-Do not submit a sitemap for this fallback app. If Google has already discovered fallback URLs, use Search Console Removals only if you need faster cleanup; otherwise the noindex and robots rules will keep the site out of search over time.
-
-## Uptime Monitor
-
-GitHub Actions includes a basic uptime check:
-
-```txt
-.github/workflows/uptime.yml
-```
-
-It checks:
-
-```txt
-https://fallback.sundaresan.dev/health
-```
-
-Schedule:
-
-```txt
-Every 15 minutes
-```
-
-You can also run it manually from the GitHub Actions tab using `workflow_dispatch`.
+Created with ❤️ by [Sundaresan V](https://sundaresan.dev)
