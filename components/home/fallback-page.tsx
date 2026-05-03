@@ -9,7 +9,6 @@ import { AnimatedBackground } from "@/components/home/animated-background"
 import { StatusBadge } from "@/components/home/status-badge"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { getAppGradient } from "@/lib/apps.config"
 
 interface FallbackPageProps {
   appName?: string
@@ -18,7 +17,7 @@ interface FallbackPageProps {
 
 export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
   const isSpecificApp = Boolean(appName)
-  const themeGradient = getAppGradient(appName)
+  const themeGradient = "from-emerald-500 to-teal-500"
 
   const title = isSpecificApp ? `${appName} is` : "Apps are"
   const highlight = "Available on Request"
@@ -60,7 +59,7 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
 
       <main className="pointer-events-none flex min-h-svh items-center justify-center px-5 py-20 sm:px-8">
         <div className="pointer-events-auto w-full max-w-4xl text-center">
-          <div 
+          <div
             className="animate-fade-in-up mb-6 flex flex-wrap justify-center gap-3 sm:mb-8"
             style={{ animationDelay: "100ms", animationFillMode: "both" }}
           >
@@ -76,7 +75,7 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
             )}
           </div>
 
-          <h1 
+          <h1
             className="animate-fade-in-up mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-[3.5rem] lg:leading-tight"
             style={{ animationDelay: "200ms", animationFillMode: "both" }}
           >
@@ -86,7 +85,7 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
             </span>
           </h1>
 
-          <p 
+          <p
             className="animate-fade-in-up mx-auto mb-8 max-w-lg text-sm leading-relaxed text-muted-foreground sm:mb-10 sm:text-base md:text-md"
             style={{ animationDelay: "300ms", animationFillMode: "both" }}
           >
@@ -94,7 +93,7 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
           </p>
 
           {originalPath ? (
-            <div 
+            <div
               className="animate-fade-in-up mx-auto mb-8 inline-flex max-w-full items-center gap-2 rounded-lg border border-border/50 bg-card/40 px-3 py-2 text-xs text-muted-foreground backdrop-blur-sm"
               style={{ animationDelay: "350ms", animationFillMode: "both" }}
             >
@@ -103,7 +102,7 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
             </div>
           ) : null}
 
-          <div 
+          <div
             className="animate-fade-in-up flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
             style={{ animationDelay: "400ms", animationFillMode: "both" }}
           >
@@ -153,7 +152,7 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
             </a>
           </div>
 
-          <p 
+          <p
             className="animate-fade-in-up mt-12 text-xs tracking-wide text-muted-foreground/40 sm:mt-16"
             style={{ animationDelay: "500ms", animationFillMode: "both" }}
           >
