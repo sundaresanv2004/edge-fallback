@@ -1,0 +1,18 @@
+name: Uptime
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  health:
+    name: Check fallback health
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Check public health endpoint
+        run: |
+          curl --fail --silent --show-error --max-time 10 \
+            https://fallback.sundaresan.dev/health

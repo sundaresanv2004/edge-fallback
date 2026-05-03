@@ -1,19 +1,29 @@
-import { Geist, Geist_Mono, DM_Sans } from "next/font/google"
+import localFont from "next/font/local"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/ui/theme-provider"
 import { cn } from "@/lib/utils";
 
-const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans' })
+const dmSans = localFont({
+  src: "../public/fonts/dm-sans-latin.woff2",
+  display: "swap",
+  variable: "--font-sans",
+})
 
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
+const fontMono = localFont({
+  src: "../public/fonts/geist-mono-latin.woff2",
+  display: "swap",
   variable: "--font-mono",
 })
 
 export const metadata = {
-  title: "Service Unavailable",
-  description: "The application previously hosted on this domain is currently unavailable. Please check back later or contact the developer for more information.",
+  title: "Application Available on Request | Sundaresan V",
+  description:
+    "Some applications are paused when they are not in active use. Request access and they can be restored when needed.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function RootLayout({

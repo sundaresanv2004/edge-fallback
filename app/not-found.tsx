@@ -1,5 +1,6 @@
 import { ArrowLeft02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
+import Link from "next/link"
 
 import { AnimatedBackground } from "@/components/home/animated-background"
 import { Button } from "@/components/ui/button"
@@ -37,14 +38,14 @@ export default function NotFound() {
             variant="outline"
             className="group h-11 gap-2 rounded-xl px-7 text-sm font-medium sm:h-12"
           >
-            <a href="/">
+            <Link href="/">
               <HugeiconsIcon
                 icon={ArrowLeft02Icon}
                 size={16}
                 className="transition-transform duration-200 group-hover:-translate-x-1"
               />
               Go Back Home
-            </a>
+            </Link>
           </Button>
         </div>
       </main>
