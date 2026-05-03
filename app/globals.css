@@ -31,18 +31,23 @@
   --color-foreground: var(--foreground);
   --color-background: var(--background);
   --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-  
+
   --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1 var(--delay, 0ms);
+
   @keyframes cell-ripple {
-    0% { opacity: 0.4; }
-    50% { opacity: 0.8; }
-    100% { opacity: 0.4; }
+
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+
+    50% {
+      opacity: 0.8;
+    }
   }
 }
 
@@ -105,6 +110,8 @@
   }
 
   body {
+    background-color: var(--background);
+    color: var(--foreground);
     @apply bg-background text-foreground;
   }
 
@@ -113,79 +120,7 @@
   }
 }
 
-/* ── Custom Animations ── */
 
-@keyframes float-1 {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  25% {
-    transform: translate(30px, -40px) scale(1.05);
-  }
-
-  50% {
-    transform: translate(-20px, 20px) scale(0.95);
-  }
-
-  75% {
-    transform: translate(15px, 35px) scale(1.02);
-  }
-}
-
-@keyframes float-2 {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  33% {
-    transform: translate(-40px, 30px) scale(1.08);
-  }
-
-  66% {
-    transform: translate(25px, -20px) scale(0.92);
-  }
-}
-
-@keyframes float-3 {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  20% {
-    transform: translate(20px, 40px) scale(1.04);
-  }
-
-  40% {
-    transform: translate(-35px, -15px) scale(0.96);
-  }
-
-  60% {
-    transform: translate(40px, -30px) scale(1.06);
-  }
-
-  80% {
-    transform: translate(-15px, 25px) scale(0.98);
-  }
-}
-
-@keyframes float-4 {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  50% {
-    transform: translate(-30px, -35px) scale(1.1);
-  }
-}
 
 @keyframes ping-slow {
   0% {
@@ -212,21 +147,7 @@
   }
 }
 
-@utility animate-float-1 {
-  animation: float-1 20s ease-in-out infinite;
-}
 
-@utility animate-float-2 {
-  animation: float-2 25s ease-in-out infinite;
-}
-
-@utility animate-float-3 {
-  animation: float-3 30s ease-in-out infinite;
-}
-
-@utility animate-float-4 {
-  animation: float-4 18s ease-in-out infinite;
-}
 
 @utility animate-ping-slow {
   animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
@@ -234,22 +155,4 @@
 
 @utility animate-fade-in-up {
   animation: fade-in-up 0.8s ease-out both;
-}
-
-@theme inline {
-  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1 var(--delay, 0ms);
-
-  @keyframes cell-ripple {
-    0% {
-      opacity: 0.4;
-    }
-
-    50% {
-      opacity: 0.8;
-    }
-
-    100% {
-      opacity: 0.4;
-    }
-  }
 }

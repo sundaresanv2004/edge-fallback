@@ -1,9 +1,12 @@
+"use client"
+
 import {
   ArrowRight02Icon,
   Mail01Icon,
   TimeQuarter02Icon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
+import { motion } from "motion/react"
 
 import { AnimatedBackground } from "@/components/home/animated-background"
 import { StatusBadge } from "@/components/home/status-badge"
@@ -13,6 +16,11 @@ import { cn } from "@/lib/utils"
 interface FallbackPageProps {
   appName?: string
   originalPath?: string
+}
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
 }
 
 export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
@@ -59,9 +67,12 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
 
       <main className="pointer-events-none flex min-h-svh items-center justify-center px-5 py-20 sm:px-8">
         <div className="pointer-events-auto w-full max-w-4xl text-center">
-          <div
-            className="animate-fade-in-up mb-6 flex flex-wrap justify-center gap-3 sm:mb-8"
-            style={{ animationDelay: "100ms", animationFillMode: "both" }}
+          <motion.div
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+            className="mb-6 flex flex-wrap justify-center gap-3 sm:mb-8"
           >
             <StatusBadge label={statusLabel} />
             {isSpecificApp && (
@@ -70,41 +81,61 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
                 </span>
-                Usually back in &lt; 10 mins
+                Usually back in &lt; 5 mins
               </div>
             )}
-          </div>
+          </motion.div>
 
-          <h1
-            className="animate-fade-in-up mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-[3.5rem] lg:leading-tight"
-            style={{ animationDelay: "200ms", animationFillMode: "both" }}
+          <motion.h1
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-[3.5rem] lg:leading-tight"
           >
             {title}{" "}
-            <span className={cn("bg-linear-to-r bg-clip-text text-transparent", themeGradient)}>
+            <span
+              className={cn("inline-block bg-linear-to-r", themeGradient)}
+              style={{
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                color: "transparent"
+              }}
+            >
               {highlight}
             </span>
-          </h1>
+          </motion.h1>
 
-          <p
-            className="animate-fade-in-up mx-auto mb-8 max-w-lg text-sm leading-relaxed text-muted-foreground sm:mb-10 sm:text-base md:text-md"
-            style={{ animationDelay: "300ms", animationFillMode: "both" }}
+          <motion.p
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+            className="mx-auto mb-8 max-w-lg text-sm leading-relaxed text-muted-foreground sm:mb-10 sm:text-base md:text-md"
           >
             {description}
-          </p>
+          </motion.p>
 
           {originalPath ? (
-            <div
-              className="animate-fade-in-up mx-auto mb-8 inline-flex max-w-full items-center gap-2 rounded-lg border border-border/50 bg-card/40 px-3 py-2 text-xs text-muted-foreground backdrop-blur-sm"
-              style={{ animationDelay: "350ms", animationFillMode: "both" }}
+            <motion.div
+              variants={fadeInUp}
+              initial="initial"
+              animate="animate"
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.35 }}
+              className="mx-auto mb-8 inline-flex max-w-full items-center gap-2 rounded-lg border border-border/50 bg-card/40 px-3 py-2 text-xs text-muted-foreground backdrop-blur-sm"
             >
               <HugeiconsIcon icon={TimeQuarter02Icon} size={15} />
               <span className="truncate">Requested path: {originalPath}</span>
-            </div>
+            </motion.div>
           ) : null}
 
-          <div
-            className="animate-fade-in-up flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
-            style={{ animationDelay: "400ms", animationFillMode: "both" }}
+          <motion.div
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
           >
             <Button
               asChild
@@ -150,14 +181,17 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
               />
               {secondaryLabel}
             </a>
-          </div>
+          </motion.div>
 
-          <p
-            className="animate-fade-in-up mt-12 text-xs tracking-wide text-muted-foreground/40 sm:mt-16"
-            style={{ animationDelay: "500ms", animationFillMode: "both" }}
+          <motion.p
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+            className="mt-12 text-xs tracking-wide text-muted-foreground/40 sm:mt-16"
           >
             &copy; {new Date().getFullYear()} Sundaresan V
-          </p>
+          </motion.p>
         </div>
       </main>
     </>
