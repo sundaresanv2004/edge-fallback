@@ -1,20 +1,20 @@
-import { DM_Sans, JetBrains_Mono } from "next/font/google"
+import { Inter, Outfit } from "next/font/google"
 
 import "./globals.css"
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
 })
 
-const fontMono = JetBrains_Mono({
+const fontHeading = Outfit({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-mono",
+  variable: "--font-heading",
 })
 
 export const metadata = {
@@ -36,7 +36,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased dark", fontMono.variable, "font-sans", dmSans.variable)}
+      className={cn("antialiased dark", inter.variable, fontHeading.variable)}
     >
       <body>
         <Link

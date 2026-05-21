@@ -25,7 +25,7 @@ const fadeInUp = {
 
 export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
   const isSpecificApp = Boolean(appName)
-  const themeGradient = "from-emerald-500 to-teal-500"
+  const themeGradient = "from-emerald-400 to-teal-400"
 
   const title = isSpecificApp ? `${appName} is` : "Apps are"
   const highlight = "Available on Request"
@@ -76,10 +76,10 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
           >
             <StatusBadge label={statusLabel} />
             {isSpecificApp && (
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[10px] font-medium tracking-wide text-emerald-500 uppercase backdrop-blur-md">
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium tracking-wide text-primary uppercase backdrop-blur-xl shadow-lg">
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60 opacity-75"></span>
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary"></span>
                 </span>
                 Usually back in &lt; 5 mins
               </div>
@@ -91,7 +91,7 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
             initial="initial"
             animate="animate"
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-[3.5rem] lg:leading-tight"
+            className="mb-4 font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-[3.5rem] lg:leading-[1.1]"
           >
             {title}{" "}
             <span
@@ -112,7 +112,7 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
             initial="initial"
             animate="animate"
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-            className="mx-auto mb-8 max-w-lg text-sm leading-relaxed text-muted-foreground sm:mb-10 sm:text-base md:text-md"
+            className="mx-auto mb-8 max-w-lg font-sans text-sm leading-relaxed text-muted-foreground sm:mb-10 sm:text-base md:text-md"
           >
             {description}
           </motion.p>
@@ -123,9 +123,9 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
               initial="initial"
               animate="animate"
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.35 }}
-              className="mx-auto mb-8 inline-flex max-w-full items-center gap-2 rounded-lg border border-border/50 bg-card/40 px-3 py-2 text-xs text-muted-foreground backdrop-blur-sm"
+              className="mx-auto mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-white/5 bg-white/5 px-4 py-2 font-sans text-xs text-muted-foreground backdrop-blur-xl shadow-lg"
             >
-              <HugeiconsIcon icon={TimeQuarter02Icon} size={15} />
+              <HugeiconsIcon icon={TimeQuarter02Icon} size={15} className="text-primary" />
               <span className="truncate">Requested path: {originalPath}</span>
             </motion.div>
           ) : null}
@@ -135,12 +135,12 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
             initial="initial"
             animate="animate"
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+            className="flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
             <Button
               asChild
               size="lg"
-              className="group h-11 w-full gap-2 rounded-xl px-7 text-sm font-medium sm:h-12 sm:w-auto"
+              className="group h-12 w-full gap-2 rounded-full bg-primary/10 border border-primary/20 px-8 font-sans text-sm font-medium text-primary shadow-[0_0_20px_calc(var(--primary)_/_15%)] backdrop-blur-xl transition-all hover:bg-primary/20 hover:border-primary/30 hover:scale-105 sm:w-auto"
             >
               <a
                 href={primaryHref}
@@ -152,7 +152,7 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
                   icon={ArrowRight02Icon}
                   size={16}
                   className={cn(
-                    "transition-transform duration-200",
+                    "transition-transform duration-300",
                     isSpecificApp
                       ? "group-hover:translate-x-1"
                       : "-rotate-45 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -167,13 +167,13 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
               href={secondaryHref}
               target={isSpecificApp ? "_blank" : undefined}
               rel={isSpecificApp ? "noopener noreferrer" : undefined}
-              className="group inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border/50 bg-card/40 px-5 py-2.5 text-sm text-muted-foreground backdrop-blur-sm transition-all hover:border-border hover:text-foreground sm:w-auto sm:py-3"
+              className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 font-sans text-sm font-medium text-muted-foreground backdrop-blur-xl transition-all hover:bg-white/10 hover:text-foreground hover:border-white/20 sm:w-auto"
             >
               <HugeiconsIcon
                 icon={isSpecificApp ? ArrowRight02Icon : Mail01Icon}
                 size={16}
                 className={cn(
-                  "transition-all duration-200",
+                  "transition-all duration-300",
                   isSpecificApp
                     ? "-rotate-45 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     : ""
@@ -188,7 +188,7 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
             initial="initial"
             animate="animate"
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-            className="mt-12 text-xs tracking-wide text-muted-foreground/40 sm:mt-16"
+            className="mt-16 font-sans text-xs tracking-wide text-muted-foreground/50"
           >
             &copy; {new Date().getFullYear()} Sundaresan V
           </motion.p>
