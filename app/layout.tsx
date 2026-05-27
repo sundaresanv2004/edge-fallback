@@ -20,6 +20,10 @@ const fontHeading = Bricolage_Grotesque({
   weight: ["800"], // Main titles will be bold
 })
 
+export const viewport = {
+  themeColor: "#0c0e17",
+}
+
 export const metadata = {
   title: "Application Available on Request | Sundaresan V",
   description:
@@ -53,7 +57,7 @@ export default function RootLayout({
             alt="Sundaresan V"
             width={34}
             height={34}
-            className="rounded-full ring-1 ring-border/30"
+            className="rounded-full ring-1 ring-border/30 transition-all duration-500 hover:ring-primary hover:rotate-[360deg]"
           />
         </Link>
         {children}

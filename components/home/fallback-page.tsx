@@ -53,13 +53,22 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
       .join("\n")
   )
 
-  const primaryHref = isSpecificApp
-    ? `mailto:contact@sundaresan.dev?subject=${emailSubject}&body=${emailBody}`
+  const emailAddress = ["contact", "sundaresan.dev"].join("@")
+  
+  const primaryActionUrl = isSpecificApp
+    ? `mailto:${emailAddress}?subject=${emailSubject}&body=${emailBody}`
     : "https://sundaresan.dev/contact"
 
-  const secondaryHref = isSpecificApp
+  const secondaryActionUrl = isSpecificApp
     ? "https://sundaresan.dev/contact"
-    : "mailto:contact@sundaresan.dev"
+    : `mailto:${emailAddress}`
+
+  const handleMailToClick = (e: React.MouseEvent<HTMLAnchorElement>, url: string) => {
+    if (url.startsWith("mailto:")) {
+      e.preventDefault()
+      window.location.href = url
+    }
+  }
 
   return (
     <>
@@ -76,7 +85,10 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
           >
             <StatusBadge label={statusLabel} />
             {isSpecificApp && (
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium tracking-wide text-primary uppercase backdrop-blur-xl shadow-lg">
+              <div 
+                title="Our servers spin down when idle to save energy. It takes a few minutes to boot them back up!"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium tracking-wide text-primary uppercase backdrop-blur-xl shadow-lg cursor-help"
+              >
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60 opacity-75"></span>
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary"></span>
@@ -143,7 +155,8 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
               className="group h-12 w-full gap-2 rounded-full bg-primary/10 border border-primary/20 px-8 font-sans text-sm font-medium text-primary shadow-[0_0_20px_calc(var(--primary)_/_15%)] backdrop-blur-xl transition-all hover:bg-primary/20 hover:border-primary/30 hover:scale-105 sm:w-auto"
             >
               <a
-                href={primaryHref}
+                href={primaryActionUrl.startsWith("mailto:") ? "#" : primaryActionUrl}
+                onClick={(e) => handleMailToClick(e, primaryActionUrl)}
                 target={isSpecificApp ? undefined : "_blank"}
                 rel={isSpecificApp ? undefined : "noopener noreferrer"}
               >
@@ -164,10 +177,11 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
             <span className="hidden text-muted-foreground/30 sm:inline">or</span>
 
             <a
-              href={secondaryHref}
+              href={secondaryActionUrl.startsWith("mailto:") ? "#" : secondaryActionUrl}
+              onClick={(e) => handleMailToClick(e, secondaryActionUrl)}
               target={isSpecificApp ? "_blank" : undefined}
               rel={isSpecificApp ? "noopener noreferrer" : undefined}
-              className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 font-sans text-sm font-medium text-muted-foreground backdrop-blur-xl transition-all hover:bg-white/10 hover:text-foreground hover:border-white/20 sm:w-auto"
+              className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 font-sans text-sm font-medium text-muted-foreground backdrop-blur-xl transition-all hover:bg-white/10 hover:text-foreground hover:border-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto"
             >
               <HugeiconsIcon
                 icon={isSpecificApp ? ArrowRight02Icon : Mail01Icon}

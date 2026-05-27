@@ -2,28 +2,13 @@
 const nextConfig = {
   output: "standalone",
   async headers() {
-    const contentSecurityPolicy = [
-      "default-src 'self'",
-      "base-uri 'self'",
-      "frame-ancestors 'none'",
-      "object-src 'none'",
-      "form-action 'self'",
-      "img-src 'self' data: blob:",
-      "font-src 'self' data: https://fonts.gstatic.com",
-      "style-src 'self' 'unsafe-inline'",
-      "script-src 'self' 'unsafe-inline'",
-      "connect-src 'self'",
-      "upgrade-insecure-requests",
-    ].join("; ")
+    // Content Security Policy is now handled in middleware.ts for nonce support
 
     return [
       {
         source: "/(.*)",
         headers: [
-          {
-            key: "Content-Security-Policy",
-            value: contentSecurityPolicy,
-          },
+
           {
             key: "Referrer-Policy",
             value: "strict-origin-when-cross-origin",
