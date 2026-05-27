@@ -1,4 +1,4 @@
-import { Inter, Outfit } from "next/font/google"
+import { Space_Grotesk, Bricolage_Grotesque } from "next/font/google"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
@@ -7,16 +7,17 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
 })
 
-const fontHeading = Outfit({
+const fontHeading = Bricolage_Grotesque({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-heading",
+  weight: ["800"], // Main titles will be bold
 })
 
 export const metadata = {
@@ -38,7 +39,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased dark", inter.variable, fontHeading.variable)}
+      className={cn("antialiased dark", spaceGrotesk.variable, fontHeading.variable)}
     >
       <body>
         <Link

@@ -37,7 +37,7 @@ export default function NotFound() {
           </motion.p>
 
           {/* Headline */}
-          <h1 className="mb-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          <h1 className="mb-3 text-2xl font-heading font-extrabold tracking-tight text-foreground sm:text-3xl">
             Page{" "}
             <span className="bg-linear-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">
               Not Found

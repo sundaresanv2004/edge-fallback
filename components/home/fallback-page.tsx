@@ -91,7 +91,7 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
             initial="initial"
             animate="animate"
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="mb-4 font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-[3.5rem] lg:leading-[1.1]"
+            className="mb-4 font-heading text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-[3.5rem] lg:leading-[1.1]"
           >
             {title}{" "}
             <span

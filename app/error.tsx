@@ -42,7 +42,7 @@ export default function Error({
           </motion.p>
 
           {/* Headline */}
-          <h1 className="mb-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          <h1 className="mb-3 text-2xl font-heading font-extrabold tracking-tight text-foreground sm:text-3xl">
             Something{" "}
             <span className="bg-linear-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
               Went Wrong
