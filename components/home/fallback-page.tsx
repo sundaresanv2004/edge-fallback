@@ -19,23 +19,28 @@ interface FallbackPageProps {
 }
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
+}
+
+const springTransition = {
+  type: "spring" as const,
+  stiffness: 100,
+  damping: 20,
 }
 
 export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
   const isSpecificApp = Boolean(appName)
-  const themeGradient = "from-emerald-400 to-teal-400"
 
   const title = isSpecificApp ? `${appName} is` : "Apps are"
-  const highlight = "Available on Request"
+  const highlight = "available on request."
   const description = isSpecificApp
     ? "This app is sleeping to save server resources. Drop me a message and I'll bring it back online for you."
-    : "Some of my projects are currently sleeping to save resources. If you were looking for something, just reach out!"
+    : "Some of my projects are currently sleeping to save resources. If you were looking for something, just reach out."
 
-  const statusLabel = isSpecificApp ? "Sleeping" : "Fallback"
-  const primaryLabel = isSpecificApp ? "Request Access" : "Get in Touch"
-  const secondaryLabel = isSpecificApp ? "Get in Touch" : "Email directly"
+  const statusLabel = isSpecificApp ? "Sleeping" : "Fallback mode"
+  const primaryLabel = isSpecificApp ? "Request Access" : "Get in touch"
+  const secondaryLabel = isSpecificApp ? "Contact directly" : "Email directly"
 
   const emailSubject = encodeURIComponent(
     isSpecificApp ? `Can you bring ${appName} back online?` : "Hey, I need access to an app"
@@ -74,85 +79,79 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
     <>
       <AnimatedBackground />
 
-      <main className="pointer-events-none flex min-h-svh items-center justify-center px-5 py-20 sm:px-8">
-        <div className="pointer-events-auto w-full max-w-4xl text-center">
+      <main className="pointer-events-none flex min-h-[100dvh] items-center justify-start px-6 py-24 sm:px-12 md:px-24">
+        <div className="pointer-events-auto w-full max-w-3xl text-left">
+          
+          {/* Badge */}
           <motion.div
             variants={fadeInUp}
             initial="initial"
             animate="animate"
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="mb-6 flex flex-wrap justify-center gap-3 sm:mb-8"
+            transition={{ ...springTransition, delay: 0.1 }}
+            className="mb-10 flex flex-wrap items-center gap-4"
           >
             <StatusBadge label={statusLabel} />
             {isSpecificApp && (
               <div 
-                title="Our servers spin down when idle to save energy. It takes a few minutes to boot them back up!"
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium tracking-wide text-primary uppercase backdrop-blur-xl shadow-lg cursor-help"
+                title="Our servers spin down when idle to save energy. It takes a few minutes to boot them back up."
+                className="inline-flex items-center gap-2 border-b border-white/20 pb-1.5 pt-1 text-[10.5px] font-mono tracking-[0.22em] text-white/50 uppercase cursor-help"
               >
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60 opacity-75"></span>
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary"></span>
-                </span>
                 Usually back in &lt; 5 mins
               </div>
             )}
           </motion.div>
 
+          {/* Headline */}
           <motion.h1
             variants={fadeInUp}
             initial="initial"
             animate="animate"
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="mb-4 font-heading text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-[3.5rem] lg:leading-[1.1]"
+            transition={{ ...springTransition, delay: 0.2 }}
+            className="mb-6 font-heading text-4xl font-extrabold tracking-tighter text-white sm:text-5xl md:text-6xl lg:text-[4.5rem] lg:leading-[1.05]"
           >
             {title}{" "}
-            <span
-              className={cn("inline-block bg-linear-to-r", themeGradient)}
-              style={{
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                color: "transparent"
-              }}
-            >
+            <span className="text-white/60">
               {highlight}
             </span>
           </motion.h1>
 
+          {/* Description */}
           <motion.p
             variants={fadeInUp}
             initial="initial"
             animate="animate"
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-            className="mx-auto mb-8 max-w-lg font-sans text-sm leading-relaxed text-muted-foreground sm:mb-10 sm:text-base md:text-md"
+            transition={{ ...springTransition, delay: 0.3 }}
+            className="mb-10 max-w-xl font-sans text-base leading-relaxed text-white/70 sm:text-lg"
           >
             {description}
           </motion.p>
 
+          {/* Requested Path */}
           {originalPath ? (
             <motion.div
               variants={fadeInUp}
               initial="initial"
               animate="animate"
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.35 }}
-              className="mx-auto mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-white/5 bg-white/5 px-4 py-2 font-sans text-xs text-muted-foreground backdrop-blur-xl shadow-lg"
+              transition={{ ...springTransition, delay: 0.35 }}
+              className="mb-10 inline-flex max-w-full items-center gap-3 border-l-2 border-white/20 pl-4 font-sans text-sm text-white/50"
             >
-              <HugeiconsIcon icon={TimeQuarter02Icon} size={15} className="text-primary" />
-              <span className="truncate">Requested path: {originalPath}</span>
+              <HugeiconsIcon icon={TimeQuarter02Icon} size={16} className="text-white/70" />
+              <span className="truncate">Path: {originalPath}</span>
             </motion.div>
           ) : null}
 
+          {/* Actions */}
           <motion.div
             variants={fadeInUp}
             initial="initial"
             animate="animate"
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+            transition={{ ...springTransition, delay: 0.4 }}
+            className="flex flex-col items-start gap-4 sm:flex-row sm:items-center"
           >
             <Button
               asChild
               size="lg"
-              className="group h-12 w-full gap-2 rounded-full bg-primary/10 border border-primary/20 px-8 font-sans text-sm font-medium text-primary shadow-[0_0_20px_calc(var(--primary)_/_15%)] backdrop-blur-xl transition-all hover:bg-primary/20 hover:border-primary/30 hover:scale-105 sm:w-auto"
+              className="group h-12 w-full gap-3 rounded-none bg-white px-8 font-sans text-sm font-semibold text-black transition-transform hover:bg-white/90 active:scale-[0.98] sm:w-auto"
             >
               <a
                 href={primaryActionUrl.startsWith("mailto:") ? "#" : primaryActionUrl}
@@ -163,9 +162,9 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
                 {primaryLabel}
                 <HugeiconsIcon
                   icon={ArrowRight02Icon}
-                  size={16}
+                  size={18}
                   className={cn(
-                    "transition-transform duration-300",
+                    "transition-transform duration-300 ease-out",
                     isSpecificApp
                       ? "group-hover:translate-x-1"
                       : "-rotate-45 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -174,20 +173,18 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
               </a>
             </Button>
 
-            <span className="hidden text-muted-foreground/30 sm:inline">or</span>
-
             <a
               href={secondaryActionUrl.startsWith("mailto:") ? "#" : secondaryActionUrl}
               onClick={(e) => handleMailToClick(e, secondaryActionUrl)}
               target={isSpecificApp ? "_blank" : undefined}
               rel={isSpecificApp ? "noopener noreferrer" : undefined}
-              className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 font-sans text-sm font-medium text-muted-foreground backdrop-blur-xl transition-all hover:bg-white/10 hover:text-foreground hover:border-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto"
+              className="group inline-flex h-12 w-full items-center justify-center gap-3 px-6 font-sans text-sm font-medium text-white/60 transition-colors hover:text-white sm:w-auto"
             >
               <HugeiconsIcon
                 icon={isSpecificApp ? ArrowRight02Icon : Mail01Icon}
-                size={16}
+                size={18}
                 className={cn(
-                  "transition-all duration-300",
+                  "transition-all duration-300 ease-out",
                   isSpecificApp
                     ? "-rotate-45 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     : ""
@@ -196,16 +193,7 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
               {secondaryLabel}
             </a>
           </motion.div>
-
-          <motion.p
-            variants={fadeInUp}
-            initial="initial"
-            animate="animate"
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-            className="mt-16 font-sans text-xs tracking-wide text-muted-foreground/50"
-          >
-            &copy; {new Date().getFullYear()} Sundaresan V
-          </motion.p>
+          
         </div>
       </main>
     </>

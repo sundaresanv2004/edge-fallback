@@ -4,12 +4,11 @@ interface StatusBadgeProps {
 
 export function StatusBadge({ label = "System Offline" }: StatusBadgeProps) {
   return (
-    <div className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-white backdrop-blur-xl shadow-lg">
-      <span className="relative flex h-2 w-2">
-        <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-primary/60 opacity-75" />
-        <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+    <div className="inline-flex items-center gap-2 border-b border-white/20 pb-1.5 pt-1 text-[10.5px] font-mono tracking-[0.22em] text-white/70 uppercase">
+      <span className="relative flex h-1.5 w-1.5">
+        <span className="relative inline-flex h-1.5 w-1.5 bg-primary" />
       </span>
-      <span className="opacity-90">{label}</span>
+      <span>{label}</span>
     </div>
   )
 }
