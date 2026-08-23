@@ -46,20 +46,30 @@ export default function RootLayout({
       className={cn("antialiased dark", spaceGrotesk.variable, fontHeading.variable)}
     >
       <body>
-        <Link
-          href="https://sundaresan.dev"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="fixed left-5 top-5 z-50 transition-opacity hover:opacity-80 sm:left-8 sm:top-8"
-        >
-          <Image
-            src="/images/profile.svg"
-            alt="Sundaresan V"
-            width={34}
-            height={34}
-            className="rounded-full transition-transform duration-500 hover:scale-110"
-          />
-        </Link>
+        <div className="fixed left-5 top-5 z-50 flex items-center gap-3 sm:left-8 sm:top-8">
+          <Link
+            href="https://sundaresan.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity hover:opacity-80"
+          >
+            <Image
+              src="/images/profile.svg"
+              alt="Sundaresan V"
+              width={34}
+              height={34}
+              className="rounded-full transition-transform duration-500 hover:scale-110"
+            />
+          </Link>
+          <Link
+            href="https://sundaresan.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-[10px] font-medium uppercase tracking-widest text-white/40 transition-colors hover:text-white"
+          >
+            Portfolio
+          </Link>
+        </div>
         {children}
         <Analytics />
         <SpeedInsights />
