@@ -6,7 +6,6 @@ import {
   TimeQuarter02Icon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { motion } from "motion/react"
 
 import { AnimatedBackground } from "@/components/home/animated-background"
 import { StatusBadge } from "@/components/home/status-badge"
@@ -16,17 +15,6 @@ import { cn } from "@/lib/utils"
 interface FallbackPageProps {
   appName?: string
   originalPath?: string
-}
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0 },
-}
-
-const springTransition = {
-  type: "spring" as const,
-  stiffness: 100,
-  damping: 20,
 }
 
 export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
@@ -82,28 +70,22 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
       <main className="pointer-events-none flex min-h-[100dvh] relative overflow-hidden items-center justify-start px-6 py-24 sm:px-12 md:px-24">
         
         {/* Massive Kinetic Watermark */}
-        <motion.div
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 0.04, x: 0 }}
-          transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }}
-          className="pointer-events-none absolute -right-[5%] bottom-12 select-none z-0"
+        <div
+          className="pointer-events-none absolute -right-[5%] bottom-12 select-none z-0 animate-slide-in-watermark opacity-0"
           aria-hidden="true"
         >
           <div className="font-heading text-[18vw] font-black leading-none tracking-tighter text-transparent"
                style={{ WebkitTextStroke: "2px white" }}>
             {isSpecificApp ? "SLEEPING" : "FALLBACK"}
           </div>
-        </motion.div>
+        </div>
 
         <div className="pointer-events-auto w-full max-w-3xl text-left relative z-10">
           
           {/* Badge */}
-          <motion.div
-            variants={fadeInUp}
-            initial="initial"
-            animate="animate"
-            transition={{ ...springTransition, delay: 0.1 }}
-            className="mb-10 flex flex-wrap items-center gap-4"
+          <div
+            className="mb-10 flex flex-wrap items-center gap-4 animate-spring-up opacity-0"
+            style={{ animationDelay: "100ms" }}
           >
             <StatusBadge label={statusLabel} />
             {isSpecificApp && (
@@ -114,54 +96,42 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
                 Usually back in &lt; 5 mins
               </div>
             )}
-          </motion.div>
+          </div>
 
           {/* Headline */}
-          <motion.h1
-            variants={fadeInUp}
-            initial="initial"
-            animate="animate"
-            transition={{ ...springTransition, delay: 0.2 }}
-            className="mb-6 font-heading text-4xl font-extrabold tracking-tighter text-white sm:text-5xl md:text-6xl lg:text-[4.5rem] lg:leading-[1.05]"
+          <h1
+            className="mb-6 font-heading text-4xl font-extrabold tracking-tighter text-white sm:text-5xl md:text-6xl lg:text-[4.5rem] lg:leading-[1.05] animate-spring-up opacity-0"
+            style={{ animationDelay: "200ms" }}
           >
             {title}{" "}
             <span className="text-white/60">
               {highlight}
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Description */}
-          <motion.p
-            variants={fadeInUp}
-            initial="initial"
-            animate="animate"
-            transition={{ ...springTransition, delay: 0.3 }}
-            className="mb-10 max-w-xl font-sans text-base leading-relaxed text-white/70 sm:text-lg"
+          <p
+            className="mb-10 max-w-xl font-sans text-base leading-relaxed text-white/70 sm:text-lg animate-spring-up opacity-0"
+            style={{ animationDelay: "300ms" }}
           >
             {description}
-          </motion.p>
+          </p>
 
           {/* Requested Path */}
           {originalPath ? (
-            <motion.div
-              variants={fadeInUp}
-              initial="initial"
-              animate="animate"
-              transition={{ ...springTransition, delay: 0.35 }}
-              className="mb-10 inline-flex max-w-full items-center gap-3 border-l-2 border-white/20 pl-4 font-sans text-sm text-white/50"
+            <div
+              className="mb-10 inline-flex max-w-full items-center gap-3 border-l-2 border-white/20 pl-4 font-sans text-sm text-white/50 animate-spring-up opacity-0"
+              style={{ animationDelay: "350ms" }}
             >
               <HugeiconsIcon icon={TimeQuarter02Icon} size={16} className="text-white/70" />
               <span className="truncate">Path: {originalPath}</span>
-            </motion.div>
+            </div>
           ) : null}
 
           {/* Actions */}
-          <motion.div
-            variants={fadeInUp}
-            initial="initial"
-            animate="animate"
-            transition={{ ...springTransition, delay: 0.4 }}
-            className="flex flex-col items-start gap-4 sm:flex-row sm:items-center"
+          <div
+            className="flex flex-col items-start gap-4 sm:flex-row sm:items-center animate-spring-up opacity-0"
+            style={{ animationDelay: "400ms" }}
           >
             <Button
               asChild
@@ -207,7 +177,7 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
               />
               {secondaryLabel}
             </a>
-          </motion.div>
+          </div>
           
         </div>
       </main>
