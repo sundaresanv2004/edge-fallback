@@ -57,7 +57,7 @@ export default function RootLayout({
             alt="Sundaresan V"
             width={34}
             height={34}
-            className="rounded-full ring-1 ring-border/30 transition-all duration-500 hover:ring-primary hover:rotate-[360deg]"
+            className="rounded-full transition-transform duration-500 hover:scale-110"
           />
         </Link>
         {children}

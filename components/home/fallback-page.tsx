@@ -79,8 +79,23 @@ export function FallbackPage({ appName, originalPath }: FallbackPageProps) {
     <>
       <AnimatedBackground />
 
-      <main className="pointer-events-none flex min-h-[100dvh] items-center justify-start px-6 py-24 sm:px-12 md:px-24">
-        <div className="pointer-events-auto w-full max-w-3xl text-left">
+      <main className="pointer-events-none flex min-h-[100dvh] relative overflow-hidden items-center justify-start px-6 py-24 sm:px-12 md:px-24">
+        
+        {/* Massive Kinetic Watermark */}
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 0.04, x: 0 }}
+          transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }}
+          className="pointer-events-none absolute -right-[5%] bottom-12 select-none z-0"
+          aria-hidden="true"
+        >
+          <div className="font-heading text-[18vw] font-black leading-none tracking-tighter text-transparent"
+               style={{ WebkitTextStroke: "2px white" }}>
+            {isSpecificApp ? "SLEEPING" : "FALLBACK"}
+          </div>
+        </motion.div>
+
+        <div className="pointer-events-auto w-full max-w-3xl text-left relative z-10">
           
           {/* Badge */}
           <motion.div

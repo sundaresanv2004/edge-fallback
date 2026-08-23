@@ -3,6 +3,7 @@
 export function AnimatedBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-background">
+      
       {/* Soft noise texture overlay for premium feel */}
       <div 
         className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay brightness-100 contrast-100 z-10"
