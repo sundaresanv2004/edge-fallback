@@ -51,7 +51,7 @@ export default function RootLayout({
             href="https://sundaresan.dev"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-opacity hover:opacity-80"
+            className="flex items-center transition-opacity hover:opacity-80"
           >
             <Image
               src="/images/profile.svg"
@@ -65,7 +65,7 @@ export default function RootLayout({
             href="https://sundaresan.dev"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-[10px] font-medium uppercase tracking-widest text-white/40 transition-colors hover:text-white"
+            className="mt-0.5 font-mono text-[10px] leading-none font-medium uppercase tracking-widest text-white/40 transition-colors hover:text-white"
           >
             Portfolio
           </Link>
